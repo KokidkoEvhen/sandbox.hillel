@@ -1,7 +1,5 @@
 <?php
 
-use JetBrains\PhpStorm\Pure;
-
 class Color
 {
     private int $red;
@@ -14,7 +12,8 @@ class Color
         $this->setBlue($blue);
     }
 
-    public function equals(Color $color): bool {
+    public function equals(Color $color): bool
+    {
         if ($this->getRed() == $color->getRed() && $this->getGreen() == $color->getGreen() && $this->getBlue() == $color->getBlue()){
             return true;
         }else{
@@ -26,7 +25,7 @@ class Color
     {
         $averageRed = round(($newColor->getRed()+$this->getRed())/2, 0);
         $averageGreen = round(($newColor->getGreen()+$this->getGreen())/2, 0);
-        $averageBlue = round(($newColor->getBlue()+$this->getBlue())/2,0);
+        $averageBlue = round(($newColor->getBlue()+$this->getBlue())/2, 0);
 
         return new Color($averageRed, $averageGreen, $averageBlue);
     }
