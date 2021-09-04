@@ -1,5 +1,7 @@
 <?php
 
+use JetBrains\PhpStorm\Pure;
+
 class Color
 {
     private int $red;
@@ -12,9 +14,13 @@ class Color
         $this->setBlue($blue);
     }
 
-//    public function equals(Color $color): bool {
-//
-//    }
+    public function equals(Color $color): bool {
+        if ($this->getRed() == $color->getRed() && $this->getGreen() == $color->getGreen() && $this->getBlue() == $color->getBlue()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     public function mix(Color $newColor): Color
     {
