@@ -24,9 +24,9 @@ class Color
 
     public function mix(Color $newColor): Color
     {
-        $averageRed = ($newColor->getRed()+$this->getRed())/2;
-        $averageGreen = ($newColor->getGreen()+$this->getGreen())/2;
-        $averageBlue = ($newColor->getBlue()+$this->getBlue())/2;
+        $averageRed = round(($newColor->getRed()+$this->getRed())/2, 0);
+        $averageGreen = round(($newColor->getGreen()+$this->getGreen())/2, 0);
+        $averageBlue = round(($newColor->getBlue()+$this->getBlue())/2,0);
 
         return new Color($averageRed, $averageGreen, $averageBlue);
     }
