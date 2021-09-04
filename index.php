@@ -10,4 +10,6 @@ $mixedColor->getBlue(); // 150
 
 if (!$color->equals($mixedColor)) {
     echo 'Цвета не равны';
+}else{
+    echo 'Цвета равны';
 }

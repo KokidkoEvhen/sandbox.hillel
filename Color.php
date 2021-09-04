@@ -46,25 +46,29 @@ class Color
         return $this->blue;
     }
 
-    private function setRed (int $red) {
-        if (!(0 <= $red && $red <= 255)) {
-            exit ('Такого цвета не существует');
-        }
+    private function setRed (int $red): void
+    {
+        $this->checkColorExist($red);
         $this->red = $red;
     }
 
-    private function setGreen (int$green) {
-        if (!(0 <= $green && $green <= 255)) {
-            exit ('Такого цвета не существует');
-        }
+    private function setGreen (int $green): void
+    {
+        $this->checkColorExist($green);
         $this->green = $green;
     }
 
-    private function setBlue (int $blue) {
-        if (!(0 <= $blue && $blue <= 255)) {
-            exit ('Такого цвета не существует');
-        }
+    private function setBlue (int $blue): void
+    {
+        $this->checkColorExist($blue);
         $this->blue = $blue;
+    }
+
+    private function checkColorExist ($color): void
+    {
+        if (!(0 <= $color && $color <= 255)) {
+            exit('Такого цвета не существует');
+        }
     }
 
 }
