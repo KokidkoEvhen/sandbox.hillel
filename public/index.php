@@ -2,7 +2,6 @@
 declare(strict_types=1);
 
 require_once '../vendor/autoload.php';
-require_once '../src/HW5/currencies.php';
 
 //Homework 4
 $color = new \App\HW4\Color(200, 200, 200);
@@ -22,8 +21,8 @@ var_dump($randomColor);
 //Homework 5
 
 //Create two different currencies
-$usd = new \App\HW5\Currency('USD', $currencies);
-$uah = new \App\HW5\Currency('UAH', $currencies);
+$usd = new \App\HW5\Currency('USD');
+$uah = new \App\HW5\Currency('UAH');
 var_dump($usd->equals($uah));
 
 //Create two different wallets to compare
@@ -34,4 +33,4 @@ var_dump($myMoney->equals($YourMoney));
 //Create another wallet to add
 $noOnesMoney = new \App\HW5\Money(50, $usd);
 $myMoney->add($noOnesMoney);
-var_dump($myMoney);
+//var_dump($myMoney);
