@@ -20,12 +20,18 @@ $randomColor = \App\HW4\Color::randomColor();
 var_dump($randomColor);
 
 //Homework 5
-$usd1 = new \App\HW5\Currency('USD', $currencies);
-$usd2 = new \App\HW5\Currency('UAH', $currencies);
 
-var_dump($usd1->equals($usd2));
+//Create two different currencies
+$usd = new \App\HW5\Currency('USD', $currencies);
+$uah = new \App\HW5\Currency('UAH', $currencies);
+var_dump($usd->equals($uah));
 
-$x = new \App\HW5\Money(100, $usd1);
-$y = new \App\HW5\Money(100, $usd2);
+//Create two different wallets to compare
+$myMoney = new \App\HW5\Money(100, $usd);
+$YourMoney = new \App\HW5\Money(100, $uah);
+var_dump($myMoney->equals($YourMoney));
 
-var_dump($x->equals($y));
+//Create another wallet to add
+$noOnesMoney = new \App\HW5\Money(50, $usd);
+$myMoney->add($noOnesMoney);
+var_dump($myMoney);

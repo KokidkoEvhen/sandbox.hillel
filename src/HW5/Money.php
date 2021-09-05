@@ -13,10 +13,19 @@ class Money
         $this->setCurrency($currency);
     }
 
-    public function equals(Money $money)
+    public function equals(Money $money): bool
     {
         return $this->getAmount() == $money->getAmount()
             && $this->getCurrency()->getIsoCode() == $money->getCurrency()->getIsoCode();
+    }
+
+    public function add(Money $money)
+    {
+        if (!($this->getCurrency()->getIsoCode() == $money->getCurrency()->getIsoCode()))
+        {
+            throw new \InvalidArgumentException('Invalid currency');
+        }
+        $this->setAmount($this->getAmount() + $money->getAmount());
     }
 
     public function getAmount(): float|int
