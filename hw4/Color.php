@@ -14,20 +14,23 @@ class Color
 
     public function equals(Color $color): bool
     {
-        if ($this->getRed() == $color->getRed() && $this->getGreen() == $color->getGreen() && $this->getBlue() == $color->getBlue()){
-            return true;
-        }else{
-            return false;
-        }
+        return $this->getRed() == $color->getRed()
+            && $this->getGreen() == $color->getGreen()
+            && $this->getBlue() == $color->getBlue();
+
     }
 
     public function mix(Color $newColor): Color
     {
-        $averageRed = round(($newColor->getRed()+$this->getRed())/2, 0);
-        $averageGreen = round(($newColor->getGreen()+$this->getGreen())/2, 0);
-        $averageBlue = round(($newColor->getBlue()+$this->getBlue())/2, 0);
+        return new Color(
+            intdiv($newColor->getRed() + $this->getRed(), 2),
+            intdiv($newColor->getGreen() + $this->getGreen(), 2),
+            intdiv($newColor->getBlue()+$this->getBlue(), 2));
+    }
 
-        return new Color($averageRed, $averageGreen, $averageBlue);
+    public static function randomColor(): self
+    {
+        return new self(rand(0, 255), rand(0, 255), rand(0, 255));
     }
 
     public function getRed (): int
@@ -65,7 +68,7 @@ class Color
 
     private function checkColorExist ($color): void
     {
-        if (!(0 <= $color && $color <= 255)) {
+        if ($color < 0 || $color > 255) {
             exit('Такого цвета не существует');
         }
     }

@@ -13,3 +13,5 @@ if (!$color->equals($mixedColor)) {
 }else{
     echo 'Цвета равны';
 }
+$randomColor = Color::randomColor();
+var_dump($randomColor);
