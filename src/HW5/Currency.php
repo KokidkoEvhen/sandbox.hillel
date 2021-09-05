@@ -18,6 +18,11 @@ class Currency
         $this->setIsoCode($isoCode);
     }
 
+    public function equals(self $currency): bool
+    {
+        return $this->getIsoCode() == $currency->getIsoCode();
+    }
+
     public function getIsoCode()
     {
         return $this->isoCode;

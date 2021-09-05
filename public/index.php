@@ -20,5 +20,12 @@ $randomColor = \App\HW4\Color::randomColor();
 var_dump($randomColor);
 
 //Homework 5
-$usd = new \App\HW5\Currency('UAH', $currencies);
-var_dump($usd);
+$usd1 = new \App\HW5\Currency('USD', $currencies);
+$usd2 = new \App\HW5\Currency('UAH', $currencies);
+
+var_dump($usd1->equals($usd2));
+
+$x = new \App\HW5\Money(100, $usd1);
+$y = new \App\HW5\Money(100, $usd2);
+
+var_dump($x->equals($y));
