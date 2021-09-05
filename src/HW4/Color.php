@@ -1,5 +1,7 @@
 <?php
 
+namespace App\HW4;
+
 class Color
 {
     private int $red;
