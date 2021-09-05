@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 require_once '../vendor/autoload.php';
+require_once '../src/HW5/currencies.php';
 
 //Homework 4
 $color = new \App\HW4\Color(200, 200, 200);
@@ -19,4 +20,5 @@ $randomColor = \App\HW4\Color::randomColor();
 var_dump($randomColor);
 
 //Homework 5
-
+$usd = new \App\HW5\Currency('UAH', $currencies);
+var_dump($usd);
