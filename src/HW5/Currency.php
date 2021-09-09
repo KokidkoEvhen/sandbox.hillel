@@ -1,7 +1,6 @@
 <?php
 
 namespace App\HW5;
-use http\Exception\InvalidArgumentException;
 
 class Currency
 {
@@ -128,11 +127,7 @@ class Currency
 
     public function __construct(string $isoCode)
     {
-        if (!in_array(strtoupper($isoCode), $this->getCurrencies()))
-        {
-            throw new \InvalidArgumentException('Invalid currency');
-        }
-        $this->setIsoCode(strtoupper($isoCode));
+        $this->setIsoCode($isoCode);
     }
 
     public function getCurrencies(): array
@@ -145,19 +140,22 @@ class Currency
         return $this->getIsoCode() == $currency->getIsoCode();
     }
 
-    public function getIsoCode()
+    public function getIsoCode(): string
     {
         return $this->isoCode;
     }
 
     private function setIsoCode($isoCode): void
     {
-        $this->isoCode = $isoCode;
+        if (!in_array(strtoupper($isoCode), $this->getCurrencies())) {
+            exit('Invalid currency');
+        }
+
+        $this->isoCode = strtoupper($isoCode);
     }
 
     private function setCurrencies(array $currencies): void
     {
         $this->currencies = $currencies;
     }
-
 }

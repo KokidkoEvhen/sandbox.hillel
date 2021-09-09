@@ -15,17 +15,17 @@ class Money
 
     public function equals(Money $money): bool
     {
-        return $this->getAmount() == $money->getAmount()
-            && $this->getCurrency()->getIsoCode() == $money->getCurrency()->getIsoCode();
+        return $this->getAmount() === $money->getAmount()
+            && $this->getCurrency()->getIsoCode() === $money->getCurrency()->getIsoCode();
     }
 
-    public function add(Money $money)
+    public function add(Money $money): Money
     {
-        if (!($this->getCurrency()->getIsoCode() == $money->getCurrency()->getIsoCode()))
-        {
+        if (!($this->getCurrency()->getIsoCode() == $money->getCurrency()->getIsoCode())) {
             throw new \InvalidArgumentException('Invalid currency');
         }
-        $this->setAmount($this->getAmount() + $money->getAmount());
+
+        return new self($this->getAmount() + $money->getAmount(), $this->getCurrency());
     }
 
     public function getAmount(): float|int
@@ -40,6 +40,10 @@ class Money
 
     private function setAmount(float|int $amount): void
     {
+        if ($amount <= 0) {
+            exit('Invalid amount of currency');
+        }
+
         $this->amount = $amount;
     }
 
@@ -47,7 +51,4 @@ class Money
     {
         $this->currency = $currency;
     }
-
-
-
 }
