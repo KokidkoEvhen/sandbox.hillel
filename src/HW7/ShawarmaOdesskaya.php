@@ -17,4 +17,3 @@ final class ShawarmaOdesskaya extends Shawarma
         'корейская морковь'
     ];
 }
-
