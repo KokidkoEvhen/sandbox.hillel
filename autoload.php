@@ -14,14 +14,13 @@
 spl_autoload_register(function ($class) {
 
     // project-specific namespace prefix
-    $prefix = 'App\\HW5\\';
+    $prefix = 'App\\';
 
     // base directory for the namespace prefix
-    $base_dir = __DIR__ . '/src/HW5/';
+    $base_dir = __DIR__ . '/src/';
 
     // does the class use the namespace prefix?
     $len = strlen($prefix);
-    $x = strncmp($prefix, $class, $len);
 
     if (strncmp($prefix, $class, $len) !== 0) {
         // no, move to the next registered autoloader

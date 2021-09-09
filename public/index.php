@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
-require_once '../autoload.php';
+//require_once '../autoload.php';
+require_once '../Autoloader.php';
 
-$usd = new \App\HW5\Currency('usd');
+$color = \App\HW4\Color::randomColor();
