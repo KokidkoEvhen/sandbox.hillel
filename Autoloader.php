@@ -11,58 +11,25 @@ class Autoloader
 
     public function addNamespace($prefix, $baseDir)
     {
-        $prefix = trim($prefix, '\\') . '\\';
-
-        $baseDir = rtrim($baseDir, DIRECTORY_SEPARATOR) . '/';
-
-        if (isset($this->prefixes[$prefix]) === false) {
-            $this->prefixes[$prefix] = array();
-        }
-
-        array_push($this->prefixes[$prefix], $baseDir);
+        $this->prefixes[$prefix] = $baseDir;
     }
 
     public function autoload($class)
     {
-        $prefix = $class;
+        $file = null;
 
-        while (false !== $pos = strrpos($prefix, '\\')) {
-
-            $prefix = substr($class, 0, $pos + 1);
-
-            $relativeClass = substr($class, $pos + 1);
-
-            $file = $this->loadFile($prefix, $relativeClass);
-
-            if ($file) {
-                return $file;
-            }
-
-            $prefix = rtrim($prefix, '\\');
-        }
-
-        return false;
-    }
-
-    protected function loadFile($prefix, $relativeClass)
-    {
-        if (isset($this->prefixes[$prefix]) === false) {
-            return false;
-        }
-
-        foreach ($this->prefixes[$prefix] as $baseDir) {
-
-            $file = $baseDir . str_replace('\\', '/', $relativeClass) . '.php';
-
-            if (file_exists($file)) {
-                require $file;
-                return $file;
+        foreach ($this->prefixes as $prefix => $dir) {
+            if (strpos($class, $prefix) !== false) {
+                $class = explode('\\', $class);
+                array_shift($class);
+                $file = realpath($dir . DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, $class) . '.php');
             }
         }
 
-        return false;
+        if ($file !== null) {
+            require $file;
+        }
     }
-
 }
 
 $autoloader = new Autoloader();

@@ -1,18 +1,28 @@
 version: "3"
 
 services:
-  app:
+  php-apache:
     build: .
     ports:
       - "8080:80"
     volumes:
       - .:/var/www/html
-    links:
-      - mysql
-  mysql:
-    image: "mysql:5.7.28"
+    networks:
+      - sandbox
+  db:
+    image: postgres
     ports:
-      - "13306:3306"
+      - "8081:3306"
     environment:
-      - MYSQL_DATABASE=docker
-      - MYSQL_ROOT_PASSWORD=pasword
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=secret
+    networks:
+      - sandbox
+  adminer:
+    image: adminer
+    ports:
+      - "8082:8080"
+    networks:
+      - sandbox
+networks:
+  sandbox:
