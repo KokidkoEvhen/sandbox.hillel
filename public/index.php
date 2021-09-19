@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 try {
-    $pdo = new PDO('pgsql:host=db;dbname=root', 'root', 'secret');
+    $pdo = new PDO('pgsql:host=db;dbname=sandbox', 'root', 'secret');
     $sql = 'CREATE TABLE IF NOT EXISTS projects (
         project_id   INTEGER PRIMARY KEY,
         project_name TEXT NOT NULL
